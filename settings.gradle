@@ -1,0 +1,2 @@
+rootProject.name='SOFTXPERT'
+include ':app'
