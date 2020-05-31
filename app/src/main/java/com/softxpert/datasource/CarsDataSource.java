@@ -99,8 +99,13 @@ public class CarsDataSource extends PageKeyedDataSource<Long, CarResponse.Data> 
                 if (response.code() == 200) {
                     carStatus.postValue(Constants.DATA_LOADED);
                     List<CarResponse.Data> data;
-                    if (response.body().getData().size() > 0) {
-                        data = response.body().getData();
+                    if (response.body().getData() != null) {
+
+                        if (response.body().getData().size() > 0) {
+                            data = response.body().getData();
+                        } else {
+                            data = Collections.emptyList();
+                        }
                     } else {
                         data = Collections.emptyList();
                     }

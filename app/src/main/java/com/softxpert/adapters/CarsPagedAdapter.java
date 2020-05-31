@@ -70,24 +70,34 @@ public class CarsPagedAdapter extends PagedListAdapter<CarResponse.Data, CarsPag
         CarResponse.Data data = getItem(position);
 
         holder.brand.setText(data.getBrand());
-        if (data.getIsUsed()){
+        if (data.getIsUsed()) {
             holder.usedOrNew.setText("Used");
-        }else {
+        } else {
             holder.usedOrNew.setText("New");
         }
 
-        if (data.getConstractionYear().length() > 0){
-            holder.year.setVisibility(View.VISIBLE);
-            holder.year.setText(data.getConstractionYear());
-        }else {
+        if (data.getConstractionYear() != null) {
+            if (data.getConstractionYear().length() > 0) {
+                holder.year.setVisibility(View.VISIBLE);
+                holder.year.setText(data.getConstractionYear());
+            } else {
+                holder.year.setVisibility(View.INVISIBLE);
+            }
+        } else {
             holder.year.setVisibility(View.INVISIBLE);
+
         }
 
-        if (data.getImageUrl().length() > 0){
-            holder.carImage.setVisibility(View.VISIBLE);
-            Glide.with(context).load(data.getImageUrl()).into(holder.carImage);
-        }else {
+        if (data.getImageUrl() != null) {
+            if (data.getImageUrl().length() > 0) {
+                holder.carImage.setVisibility(View.VISIBLE);
+                Glide.with(context).load(data.getImageUrl()).into(holder.carImage);
+            } else {
+                holder.carImage.setVisibility(View.GONE);
+            }
+        } else {
             holder.carImage.setVisibility(View.GONE);
+
         }
     }
 }
